@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>All USERS</title>
+</head>
+<body>
+<h2> UPDATE USER </h2>>
+<br>
+<form th:action="updateUser" th:object="${user}">
+
+
+
+    <input type="hidden" id="id" name="id" th:value="${user.id}"/>
+
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="password">Enter password</label>
+    <input type="text" th:field="*{password}" id="password">
+    <br>
+    <br>
+    <input type="submit" value="OK">
+
+</form>
+
+
+</body>
+</html>

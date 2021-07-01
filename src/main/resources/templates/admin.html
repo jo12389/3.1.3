@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All USERS</title>
+</head>
+<body>
+<h2> All USERS </h2>>
+
+<br>
+<br>
+<table>
+    <tr>
+        <th>USER</th>
+        <th>PASSWORD</th>
+        <th>OPERATIONS</th>
+
+    </tr>
+    <div th:each="user : ${userList}">
+
+
+        <tr>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getPassword()}"></td>
+            <td>
+
+                <a th:href="@{/updateInfo(id=${user.getId()})}" th:text="UPDATE">user</a>
+
+                <a th:href="@{/deleteUser(id=${user.getId()})}" th:text="DELETE">user</a>
+
+
+            </td>
+
+
+        </tr>
+    </div>
+</table>
+<br>
+<br>
+
+<br>
+
+<input type="button" value="CREATE NEW USER"
+    onclick="window.location.href = 'addNewUser'"/>
+<br>
+<br>
+<br>
+
+<a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+</form>
+
+</body>
+</html>
