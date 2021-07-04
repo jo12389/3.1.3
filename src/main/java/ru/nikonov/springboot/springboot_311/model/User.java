@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
-//
+
 @Entity
 @Table//(name ="user")
 public class User implements UserDetails {
