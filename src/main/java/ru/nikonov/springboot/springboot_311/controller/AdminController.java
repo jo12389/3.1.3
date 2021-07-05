@@ -7,28 +7,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.nikonov.springboot.springboot_311.model.Role;
 import ru.nikonov.springboot.springboot_311.model.User;
-import ru.nikonov.springboot.springboot_311.service.RoleService;
 import ru.nikonov.springboot.springboot_311.service.RoleServiceImpl;
-import ru.nikonov.springboot.springboot_311.service.UserService;
 import ru.nikonov.springboot.springboot_311.service.UserServiceImpl;
-
 import java.util.List;
 
 
 @Controller
 public class AdminController {
+
     private UserServiceImpl userService;
     private RoleServiceImpl roleService;
+
     @Autowired
     public AdminController(UserServiceImpl userService, RoleServiceImpl roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
 
-    public AdminController() {
-    }
-    @GetMapping("/admin")
-    public String testList(Model model, Authentication authentication){
+    @RequestMapping("/admin")
+    public String ListUser(Model model, Authentication authentication){
         User user = userService.getUserByLogin(authentication.getName());
         model.addAttribute("currentuser", user);
         model.addAttribute("userList",userService.getListFromService());
@@ -39,25 +36,7 @@ public class AdminController {
         model.addAttribute("newuser", newuser);
         return "admin";
     }
-    @RequestMapping("/addNewUser")
-    public String addNewUser(Model model){
-    User user = new User();
-    model.addAttribute("user",user);
-    return "test-user-info";
-    }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String loginPage() {
-        return "login";
-    }
-
-
-    @RequestMapping("/updateInfo")
-    public String updateUser(@RequestParam("id")int id, Model model){
-        User user = userService.show(id);
-        model.addAttribute("user",user);
-        return "test-user-edit";
-    }
 
 
     @RequestMapping("/saveUser")
@@ -79,7 +58,7 @@ public class AdminController {
 
 
     @RequestMapping("/deleteUser")
-    public String deleteUser(@ModelAttribute("user") User user, @RequestParam("id") int id){
+    public String deleteUser(@RequestParam("id") int id){
         userService.delete(id);
         return "redirect:/admin";
     }
