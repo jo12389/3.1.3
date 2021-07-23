@@ -16,40 +16,34 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     @Transactional
-    public List<User> getUserList() {
+    public List<User> getAllUsers() {
         return entityManager.createQuery("select  user from  User  user", User.class).getResultList();
     }
 
     @Override
     @Transactional
-    public User show(int id) {
-        return entityManager.find(User.class,id);
+    public User getUserForID(int id) {
+        return entityManager.find(User.class, id);
     }
 
     @Override
     @Transactional
-    public void save(User user) {
+    public void createUser(User user) {
         entityManager.persist(user);
     }
 
     @Override
     @Transactional
-    public void update(User user) {
-      /*  User user = show(id);
-        user.setName(updateUser.getName());
-        user.setPassword(updateUser.getPassword());
-        user.setRoles(updateUser.getRoles());*/
+    public void updateUser(User user) {
         entityManager.merge(user);
     }
 
     @Override
     @Transactional
-    public void delete(int id) {
+    public void deleteUser(int id) {
 
-       entityManager.createQuery("delete from User where id = :id").setParameter("id", id).executeUpdate();
+        entityManager.createQuery("delete from User where id = :id").setParameter("id", id).executeUpdate();
 
-
-      //  entityManager.remove(entityManager.find(User.class,id));
 
     }
 
@@ -57,6 +51,6 @@ public class UserDAOImpl implements UserDAO {
     public User getUserByLogin(String name) {
 
         return entityManager.createQuery("select user from User user where user.name = :name", User.class)
-                .setParameter("name",name).getSingleResult();
+                .setParameter("name", name).getSingleResult();
     }
 }

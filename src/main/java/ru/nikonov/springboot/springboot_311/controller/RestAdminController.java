@@ -1,10 +1,7 @@
 package ru.nikonov.springboot.springboot_311.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.nikonov.springboot.springboot_311.model.Role;
 import ru.nikonov.springboot.springboot_311.model.User;
@@ -27,39 +24,38 @@ public class RestAdminController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> showAllUser(){
-        List <User> userList = userService.getListFromService();
-      /*  return new ResponseEntity<>(userList, HttpStatus.OK);*/
-        return ResponseEntity.ok().body(userService.getListFromService());
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> userList = userService.getAllUsers();
+        return ResponseEntity.ok().body(userList);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> read (@PathVariable int id){
-        User user = userService.show(id);
+    public ResponseEntity<User> getUserForID(@PathVariable int id) {
+        User user = userService.getUserForID(id);
         return ResponseEntity.ok().body(user);
     }
 
     @GetMapping("/roles")
     public ResponseEntity<List<Role>> getAllRoles() {
-        List<Role> roles = roleService.allRole();
+        List<Role> roles = roleService.getAllRoles();
         return ResponseEntity.ok().body(roles);
     }
 
     @PostMapping()
-    public ResponseEntity<?> create(@RequestBody User user) {
-       userService.save(user);
-       return ResponseEntity.ok().body(user);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        userService.createUser(user);
+        return ResponseEntity.ok().body(user);
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody User user) {
-        userService.update(user);
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
+        userService.updateUser(user);
         return ResponseEntity.ok().body(user);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable int id) {
-        userService.delete(id);
+    public ResponseEntity<?> deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
         return ResponseEntity.ok().body(id);
     }
 }

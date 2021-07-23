@@ -1,7 +1,6 @@
 package ru.nikonov.springboot.springboot_311.security;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -21,6 +20,7 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
     // Spring Security использует объект Authentication, пользователя авторизованной сессии.
 
     private final UserDetailsService userDetailsService;
+
     @Autowired
     public SuccessUserHandler(@Qualifier("userServiceImpl") UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;

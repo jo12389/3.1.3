@@ -88,12 +88,12 @@ $('#newUserForm').submit((e) => {
     let $userForDB = {};
     let $roles = [];
 
-    $('#newUserForm').find('option:selected').each(function() {
+    $('#newUserForm').find('option:selected').each(function () {
         let $role = $(this).data();
         $roles.push($role)
     });
 
-    $('#newUserForm').find('input').each(function() {
+    $('#newUserForm').find('input').each(function () {
         $userForDB[this.name] = $(this).val();
     });
 
@@ -103,7 +103,7 @@ $('#newUserForm').submit((e) => {
         method: 'POST',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify($userForDB)
-    }).then(function() {
+    }).then(function () {
 
         $('#newUserForm').find('input').val('');
         $('#newUserForm select').find('option').prop('selected', false);
@@ -119,23 +119,23 @@ $('#editForm').submit((e) => {
     let $userForDB = {};
     let $roles = [];
 
-    $('#editForm').find('option:selected').each(function() {
+    $('#editForm').find('option:selected').each(function () {
         let $role = $(this).data();
         $roles.push($role)
     });
 
-    $('#editForm').find('input').each(function() {
+    $('#editForm').find('input').each(function () {
         $userForDB[this.name] = $(this).val();
 
     });
 
     $userForDB.roles = $roles
 
-    fetch('http://localhost:8080/api/admin/users',   {
+    fetch('http://localhost:8080/api/admin/users', {
         method: 'PUT',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify($userForDB)
-    }).then(function() {
+    }).then(function () {
         $('#editModal .close').click();
         getUsers();
     })
@@ -147,7 +147,7 @@ $('#deleteForm').submit((e) => {
 
     fetch('http://localhost:8080/api/admin/users/' + $('#idForDelete').val(), {
         method: 'DELETE',
-    }).then(function() {
+    }).then(function () {
         $('#deleteModal .close').click();
         getUsers();
     })

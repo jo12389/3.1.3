@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
 
     @Autowired
     RoleDAO roleDAO;
@@ -21,7 +21,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public List<Role> allRole() {
+    public List<Role> getAllRoles() {
         return roleDAO.allRole();
     }
 }

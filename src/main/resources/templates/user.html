@@ -29,21 +29,6 @@
     </div>
 </nav>
 
-<!--<div class="row no-gutters vh-100">
-
-    &lt;!&ndash;    Левая панелька      &ndash;&gt;
-    <div class="col-md-2 bg-white">
-        <ul class="nav nav-pills flex-column mt-3">
-
-            <a sec:authorize="hasRole('ROLE_ADMIN') "class="nav-item nav-link" th:href="@{/admin}">Admin</a>
-            <a class="nav-item nav-link active" th:href="@{/user}">User</a>
-
-
-
-        </ul>
-    </div>
-
-</div>-->
 
 <main>
     <div class="container-fluid d-flex flex-column vh-100">
@@ -51,7 +36,8 @@
             <aside class="col-md-2 px-0 pt-3">
                 <ul class="nav nav-pills flex-column " role="tablist">
                     <li class="nav-item">
-                        <a sec:authorize="hasRole('ROLE_ADMIN') "class="nav-item nav-link" th:href="@{/admin}">Admin</a>
+                        <a sec:authorize="hasRole('ROLE_ADMIN') " class="nav-item nav-link"
+                           th:href="@{/admin}">Admin</a>
                         <a class="nav-link active"
                            data-toggle="pill"
                            href="#userCard" role="tab"
@@ -61,7 +47,7 @@
                 </ul>
             </aside>
 
-            <div class="col-md-10 pt-3 px-4 bg-light" >
+            <div class="col-md-10 pt-3 px-4 bg-light">
                 <div class="tab-content">
                     <!--User information-page-->
                     <div class="tab-pane active" id="userCard" role="tabpanel" aria-labelledby="user-tab">
@@ -83,7 +69,7 @@
                                         </thead>
 
                                         <tbody>
-                                        <!------admin.js getUser------->
+                                        <!------user.js getUser------->
                                         </tbody>
                                     </table>
                                 </div>

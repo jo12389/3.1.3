@@ -16,28 +16,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserDAO userDao;
 
-    public List<User> getListFromService() {
-            return userDao.getUserList();
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 
     @Override
-    public User show(int id) {
-        return userDao.show(id);
+    public User getUserForID(int id) {
+        return userDao.getUserForID(id);
     }
 
     @Override
-    public void save(User user) {
-        userDao.save(user);
+    public void createUser(User user) {
+        userDao.createUser(user);
     }
 
     @Override
-    public void update(User user) {
-        userDao.update(user);
+    public void updateUser(User user) {
+        userDao.updateUser(user);
     }
 
     @Override
-    public void delete(int id) {
-        userDao.delete(id);
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
     }
 
     @Override
